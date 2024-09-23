@@ -35,8 +35,8 @@ export const deleteContact = createAsyncThunk(
       const response = await axios.delete(`/contacts/${contactId}`);
       //Повертає видалений обʼєкт, з якого ми для редюсера беремо значення id
       return response.data;
-    } catch {
-      return thunkAPI.rejectWithValue();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

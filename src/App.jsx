@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchContacts } from "./redux/contactsOps";
-import { selectError, selectLoading } from "./redux/contactsSlice";
+import { fetchContacts } from "./redux/contacts/operations";
+import { selectError, selectLoading } from "./redux/contacts/selectors";
 import { FaAddressBook } from "react-icons/fa";
 import { Grid } from "react-loader-spinner";
 import ContactForm from "./components/ContactForm/ContactForm";
@@ -13,6 +13,7 @@ import "./App.css";
 export default function App() {
   const dispatch = useDispatch();
   const error = useSelector(selectError);
+
   const isLoading = useSelector(selectLoading);
 
   //HTTP запит (діспатчиться операція)
@@ -33,7 +34,7 @@ export default function App() {
           <Grid color="rgb(124, 111, 156)" />
         </div>
       )}
-      {error && <RequestError />}
+      {error !== null && <RequestError />}
       <ContactList />
     </div>
   );

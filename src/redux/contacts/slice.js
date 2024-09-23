@@ -1,37 +1,10 @@
-import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { addContact, deleteContact, fetchContacts } from "./contactsOps";
-import { selectNameFilter } from "./filtersSlice";
-
-export const selectContacts = state => state.contacts.items;
-export const selectLoading = state => state.contacts.loading;
-export const selectError = state => state.contacts.error;
-
-//? Складовий селектор викликається кожного разу, коли змінюється будь-яка властивість слайсу
-//Складовий селектор має оголошуватися через ф-ю createSelector(), яка мемоїзує виконані обчислення і задає лише потрібні залежності. Це дозволяє уникнути зайвому виклику селектора.
-//Приймає масив залежних селекторів і коллбек функцію, яка в свою чергу аргументами приймає результат виклику функцій-селекторів
-export const selectFilteredContacts = createSelector(
-  [selectContacts, selectNameFilter],
-  (contacts, query) => {
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(query.toLowerCase())
-    );
-  }
-);
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { addContact, deleteContact, fetchContacts } from "./operations";
 
 const initialState = {
   items: [],
   loading: false,
-  error: false,
-};
-
-const handlePending = state => {
-  state.loading = true;
-  state.error = false;
-};
-
-const handleRejected = state => {
-  state.loading = false;
-  state.error = true;
+  error: null,
 };
 
 //? Детальніше по слайсу див. коментарі нижче
@@ -40,29 +13,23 @@ const slice = createSlice({
   name: "contacts",
   initialState,
 
-  //extraReducers використовуємо для обробки інших, НЕ ВЛАСНИХ екшенів
   extraReducers: builder => {
     builder
       //-----------------------GET------------------------------//
-      .addCase(fetchContacts.pending, handlePending)
 
       .addCase(fetchContacts.fulfilled, (state, action) => {
         state.items = action.payload;
         state.loading = false;
       })
 
-      .addCase(fetchContacts.rejected, handleRejected)
       //-----------------------POST------------------------------//
-      .addCase(addContact.pending, handlePending)
 
       .addCase(addContact.fulfilled, (state, action) => {
         state.items.push(action.payload);
         state.loading = false;
       })
 
-      .addCase(addContact.rejected, handleRejected)
       //----------------------DELETE-------------------------------//
-      .addCase(deleteContact.pending, handlePending)
 
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.items = state.items.filter(
@@ -71,19 +38,32 @@ const slice = createSlice({
         state.loading = false;
       })
 
-      .addCase(deleteContact.rejected, handleRejected);
-  },
-  // reducers: {
-  //   addContact: (state, action) => {
-  //     state.items.push(action.payload);
-  //   },
-  //   deleteContact: (state, action) => {
-  //     state.items = state.items.filter(task => task.id !== action.payload);
-  //   },
-  // },
-});
+      //--------------------pending---rejected----------------------//
 
-// export const { addContact, deleteContact } = slice.actions;
+      .addMatcher(
+        isAnyOf(
+          fetchContacts.pending,
+          addContact.pending,
+          deleteContact.pending
+        ),
+        state => {
+          state.loading = true;
+          state.error = null;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          fetchContacts.rejected,
+          addContact.rejected,
+          deleteContact.rejected
+        ),
+        (state, action) => {
+          state.loading = false;
+          state.error = action.error.message;
+        }
+      );
+  },
+});
 
 export default slice.reducer;
 

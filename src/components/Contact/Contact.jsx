@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/contactsOps";
+import { deleteContact } from "../../redux/contacts/operations";
 import { FaPhone, FaUser } from "react-icons/fa";
 import css from "./Contact.module.css";
 import clsx from "clsx";
