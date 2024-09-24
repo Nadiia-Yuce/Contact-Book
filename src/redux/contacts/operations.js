@@ -3,6 +3,11 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://66eb15d355ad32cda47ba08a.mockapi.io";
 
+//TODO Як створити axios інстанс для зручної роботи з декількома беками
+// const axiosInstance = axios.create({
+//   baseURL: "https://connections-api.goit.global/",
+// });
+
 //Оголошенння операцій для роботи з бекендом
 export const fetchContacts = createAsyncThunk(
   "contacts/getAll",
@@ -10,8 +15,8 @@ export const fetchContacts = createAsyncThunk(
     try {
       const response = await axios.get("/contacts");
       return response.data;
-    } catch {
-      return thunkAPI.rejectWithValue();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -22,8 +27,8 @@ export const addContact = createAsyncThunk(
     try {
       const response = await axios.post("/contacts", newContact);
       return response.data;
-    } catch {
-      return thunkAPI.rejectWithValue();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

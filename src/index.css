@@ -1,8 +1,11 @@
 body {
-  max-width: 1024px;
+  min-height: 100vh;
   margin: 0 auto;
-  padding: 30px;
-  background-color: #f4f1f8;
+  background: linear-gradient(
+    0deg,
+    rgba(184, 181, 230, 1) 20%,
+    rgba(255, 255, 255, 1) 100%
+  );
   font-family: "Roboto", sans-serif;
 }
 
@@ -33,12 +36,12 @@ button {
   outline: none;
 }
 
-@media screen and (max-width: 375px) {
+/* @media screen and (max-width: 375px) {
   body {
     max-width: 375px;
     padding: 30px 16px;
   }
-}
+} */
 
 /*! Для центрування всього */
 /* #root {

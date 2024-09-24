@@ -17,22 +17,21 @@ export default function ContactForm() {
 
   //бібліотека для валідації "yup"; схема валідації полів; передається пропсом в Formik
   //помилки валідації візуалізуємо через компонент ErrorMessage, який додаємо до кожного філда
-  const contactSchema = Yup.object().shape({
+  const validationSchema = Yup.object().shape({
     name: Yup.string()
       .min(3, "Too short! Minimum 3 letters.")
       .max(50, "Too long! Maximum 50 letters.")
-      .required("Required!"),
+      .required("Name is required!"),
     number: Yup.string()
-      .min(3, "Too short! Minimum 3 digits.")
-      .max(50, "Too long! Maximum 50 digits.")
-      .required("Required!"),
+      .matches(/^\d{7,14}$/, "Phone number must be between 7 and 14 digits.")
+      .required("Phone number is required!"),
   });
 
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={handleSubmit}
-      validationSchema={contactSchema}
+      validationSchema={validationSchema}
     >
       {/* отримання доступу до стану форми за допомогою властивостей, які Formik
       надає в межах render-функції або в children пропсі (ще можна отримати values-значення полів) */}

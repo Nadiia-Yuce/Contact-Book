@@ -1,7 +1,7 @@
 .form {
   max-width: 500px;
   margin: 0 auto;
-  border: 1px solid rgb(97, 76, 150);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 4px 16px -4px rgba(0, 0, 0, 0.16);
   border-radius: 16px;
   padding: 30px 20px;
   display: flex;
@@ -12,9 +12,12 @@
 
 .formGroup {
   position: relative;
-  margin-bottom: 40px;
   display: flex;
   flex-direction: column;
+}
+
+.formGroup:first-child {
+  margin-bottom: 30px;
 }
 
 .formLabel {
@@ -40,6 +43,7 @@
 .formBtn {
   width: 150px;
   height: 35px;
+  margin-top: 50px;
   border: none;
   border-radius: 4px;
   background-color: rgb(124, 111, 156);

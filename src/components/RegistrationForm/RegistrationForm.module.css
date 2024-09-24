@@ -1,0 +1,38 @@
+.registerBtn {
+  margin-top: 0;
+}
+
+.registerFormGroup {
+  margin-bottom: 30px;
+}
+
+.lastRegisterFormGroup {
+  margin-bottom: 60px;
+}
+
+.passwordToggleBtn {
+  position: absolute;
+  padding: 0;
+  right: 0;
+  top: 57%;
+  transform: translate(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.password {
+  padding: 8px 24px 8px 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .registerForm {
+    width: 400px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .registerForm {
+    width: 500px;
+  }
+}

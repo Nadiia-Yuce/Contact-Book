@@ -1,0 +1,16 @@
+.titleWrap {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 30px 10px;
+}
+
+.pageTitle {
+  color: rgb(83, 83, 83);
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
