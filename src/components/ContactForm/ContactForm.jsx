@@ -2,7 +2,8 @@ import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import css from "./ContactForm.module.css";
+// import css from "./ContactForm.module.css";
+import "../../index.css";
 
 export default function ContactForm() {
   const dispatch = useDispatch();
@@ -36,30 +37,26 @@ export default function ContactForm() {
       {/* отримання доступу до стану форми за допомогою властивостей, які Formik
       надає в межах render-функції або в children пропсі (ще можна отримати values-значення полів) */}
       {({ isValid, dirty }) => (
-        <Form className={`${css.form} animate__animated animate__fadeInDown`}>
-          <div className={css.formGroup}>
-            <label htmlFor="name" className={css.formLabel}>
+        <Form className={`form animate__animated animate__fadeInDown`}>
+          <div className="formGroup">
+            <label htmlFor="name" className="formLabel">
               Name
             </label>
-            <Field name="name" id="name" className={css.formInput} />
-            <ErrorMessage name="name" component="span" className={css.error} />
+            <Field name="name" id="name" className="formInput" />
+            <ErrorMessage name="name" component="span" className="error" />
           </div>
 
-          <div className={css.formGroup}>
-            <label htmlFor="number" className={css.formLabel}>
+          <div className="formGroup">
+            <label htmlFor="number" className="formLabel">
               Number
             </label>
-            <Field name="number" id="number" className={css.formInput} />
-            <ErrorMessage
-              name="number"
-              component="span"
-              className={css.error}
-            />
+            <Field name="number" id="number" className="formInput" />
+            <ErrorMessage name="number" component="span" className="error" />
           </div>
 
           <button
             type="submit"
-            className={css.formBtn}
+            className="formBtn"
             disabled={!isValid || !dirty}
           >
             Add contact

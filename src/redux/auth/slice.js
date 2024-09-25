@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { register } from "./operations";
+import { logIn, logOut, register } from "./operations";
 
 const initialState = {
   user: {
@@ -23,14 +23,28 @@ const slice = createSlice({
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
-      .addMatcher(isAnyOf(register.pending), state => {
-        state.isLoading = true;
-        state.error = null;
+      .addCase(logIn.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isLoggedIn = true;
       })
-      .addMatcher(isAnyOf(register.rejected), (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      });
+      .addCase(logOut.fulfilled, () => {
+        return initialState;
+      })
+      .addMatcher(
+        isAnyOf(register.pending, logIn.pending, logOut.pending),
+        state => {
+          state.isLoading = true;
+          state.error = null;
+        }
+      )
+      .addMatcher(
+        isAnyOf(register.rejected, logIn.rejected, logOut.rejected),
+        (state, action) => {
+          state.isLoading = false;
+          state.error = action.payload;
+        }
+      );
   },
 });
 

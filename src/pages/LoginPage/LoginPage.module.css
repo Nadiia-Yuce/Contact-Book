@@ -1,0 +1,22 @@
+.loginPageContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 30px;
+}
+
+.titleWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 30px;
+}
+
+@media screen and (max-width: 768px) {
+  .titleWrap {
+    margin-bottom: 16px;
+  }
+}

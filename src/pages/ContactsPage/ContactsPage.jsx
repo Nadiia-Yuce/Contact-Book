@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchContacts } from "../../redux/contacts/operations";
-import { FaAddressBook } from "react-icons/fa";
 import { Grid } from "react-loader-spinner";
 import { selectError, selectLoading } from "../../redux/contacts/selectors";
 import ContactForm from "../../components/ContactForm/ContactForm";
@@ -23,10 +22,7 @@ export default function ContactsPage() {
 
   return (
     <div>
-      <div className={css.titleWrap}>
-        <FaAddressBook size={35} color="#62453C" />
-        <h1 className={css.pageTitle}>Contactbook</h1>
-      </div>
+      <h1 className="pageTitle">📖 My contact book</h1>
       <ContactForm />
       <SearchBox />
       {isLoading && (

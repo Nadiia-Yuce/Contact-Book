@@ -1,6 +1,6 @@
-.registerBtn {
+/* .registerBtn {
   margin-top: 0;
-}
+} */
 
 .registerFormGroup {
   margin-bottom: 30px;
@@ -23,16 +23,4 @@
 
 .password {
   padding: 8px 24px 8px 16px;
-}
-
-@media screen and (min-width: 768px) {
-  .registerForm {
-    width: 400px;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .registerForm {
-    width: 500px;
-  }
 }

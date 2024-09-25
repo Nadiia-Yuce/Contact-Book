@@ -22,19 +22,37 @@ export const register = createAsyncThunk(
       return data;
     } catch (error) {
       //   console.log(error); Обʼєкт помилки axios
+      const { status, data } = error.response;
 
-      if (error.response) {
-        // Сервер повернув відповідь з кодом помилки
-        const { status, data } = error.response;
-
-        // Обробка дубліката email (MongoDB помилка 11000)
-        if (status === 400 && data.code === 11000 && data.keyPattern.email) {
-          return thunkAPI.rejectWithValue("This email is already in use.");
-        }
-
-        // Інші помилки з сервера
-        return thunkAPI.rejectWithValue(data.message || "Registration failed.");
+      // Обробка дубліката email (MongoDB помилка 11000)
+      if (status === 400 && data.code === 11000 && data.keyPattern.email) {
+        return thunkAPI.rejectWithValue("This email is already in use.");
       }
+
+      // Інші помилки з сервера
+      return thunkAPI.rejectWithValue(data.message || "Registration failed.");
     }
   }
 );
+
+export const logIn = createAsyncThunk(
+  "auth/login",
+  async (credentials, thunkAPI) => {
+    try {
+      const { data } = await axios.post("/users/login", credentials);
+      setAuthHeader(data.token);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
+  try {
+    await axios.post("/users/logout");
+    setClearAuthHeader();
+  } catch (error) {
+    thunkAPI.rejectWithValue(error.message);
+  }
+});

@@ -1,11 +1,11 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-import commonCss from "../ContactForm/ContactForm.module.css";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
 import { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import css from "./RegistrationForm.module.css";
+import "../../index.css";
 
 export default function RegistrationForm() {
   const dispatch = useDispatch();
@@ -50,49 +50,32 @@ export default function RegistrationForm() {
       validationSchema={validationSchema}
     >
       {({ isValid, dirty }) => (
-        <Form
-          className={`${commonCss.form} ${css.registerForm} animate__animated animate__fadeInDown`}
-        >
-          <div className={`${commonCss.formGroup} ${css.registerFormGroup}`}>
-            <label htmlFor="name" className={commonCss.formLabel}>
+        <Form className="form animate__animated animate__fadeInDown">
+          <div className={`formGroup ${css.registerFormGroup}`}>
+            <label htmlFor="name" className="formLabel">
               Username
             </label>
-            <Field name="name" id="name" className={commonCss.formInput} />
-            <ErrorMessage
-              name="name"
-              component="span"
-              className={commonCss.error}
-            />
+            <Field name="name" id="name" className="formInput" />
+            <ErrorMessage name="name" component="span" className="error" />
           </div>
 
-          <div className={`${commonCss.formGroup} ${css.registerFormGroup}`}>
-            <label htmlFor="email" className={commonCss.formLabel}>
+          <div className={`formGroup ${css.registerFormGroup}`}>
+            <label htmlFor="email" className="formLabel">
               Email
             </label>
-            <Field
-              type="email"
-              name="email"
-              id="email"
-              className={commonCss.formInput}
-            />
-            <ErrorMessage
-              name="email"
-              component="span"
-              className={commonCss.error}
-            />
+            <Field type="email" name="email" id="email" className="formInput" />
+            <ErrorMessage name="email" component="span" className="error" />
           </div>
 
-          <div
-            className={`${commonCss.formGroup} ${css.lastRegisterFormGroup}`}
-          >
-            <label htmlFor="password" className={commonCss.formLabel}>
+          <div className={`formGroup ${css.lastRegisterFormGroup}`}>
+            <label htmlFor="password" className="formLabel">
               Password
             </label>
             <Field
               type={isPasswordVisible ? "text" : "password"}
               name="password"
               id="password"
-              className={`${commonCss.formInput} ${css.password}`}
+              className={`formInput ${css.password}`}
               style={{ position: "relative" }}
             />
 
@@ -105,16 +88,12 @@ export default function RegistrationForm() {
               {isPasswordVisible ? <FiEye size={15} /> : <FiEyeOff size={15} />}
             </button>
 
-            <ErrorMessage
-              name="password"
-              component="span"
-              className={commonCss.error}
-            />
+            <ErrorMessage name="password" component="span" className="error" />
           </div>
 
           <button
             type="submit"
-            className={`${commonCss.formBtn} ${css.registerBtn}`}
+            className="formBtn"
             disabled={!isValid || !dirty}
           >
             Register
