@@ -1,5 +1,6 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { addContact, deleteContact, fetchContacts } from "./operations";
+import { logOut } from "../auth/operations";
 
 const initialState = {
   items: [],
@@ -36,6 +37,11 @@ const slice = createSlice({
           contact => contact.id !== action.payload.id
         );
         state.loading = false;
+      })
+      //----------------------logout-------------------------------//
+
+      .addCase(logOut.fulfilled, () => {
+        return initialState;
       })
 
       //--------------------pending---rejected----------------------//

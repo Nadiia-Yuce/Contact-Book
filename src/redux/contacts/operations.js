@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://66eb15d355ad32cda47ba08a.mockapi.io";
+// axios.defaults.baseURL = "https://66eb15d355ad32cda47ba08a.mockapi.io";
 
 //TODO Як створити axios інстанс для зручної роботи з декількома беками
 // const axiosInstance = axios.create({

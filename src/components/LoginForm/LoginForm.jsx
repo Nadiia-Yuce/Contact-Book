@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import css from "./LoginForm.module.css";
 import common from "../RegistrationForm/RegistrationForm.module.css";
 import { useDispatch } from "react-redux";
+import { logIn } from "../../redux/auth/operations";
 
 export default function LoginForm() {
   const [isPasswordVisible, setPasswordVisible] = useState(false);
@@ -30,7 +31,7 @@ export default function LoginForm() {
   });
 
   const handleSubmit = values => {
-    dispatch(values);
+    dispatch(logIn(values));
   };
 
   const togglePasswordVisibility = () => {
