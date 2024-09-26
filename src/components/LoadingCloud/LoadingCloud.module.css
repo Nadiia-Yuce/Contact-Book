@@ -1,0 +1,51 @@
+.cloud {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Центрування по вертикалі */
+}
+
+.cloudShape {
+  position: relative;
+  width: 150px;
+  height: 60px;
+  background-color: #f0f0f0;
+  border-radius: 50px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cloudShape::before,
+.cloudShape::after {
+  content: "";
+  position: absolute;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+}
+
+.cloudShape::before {
+  width: 80px;
+  height: 80px;
+  top: -34px; /* Піднята частина хмарки */
+  left: 10px;
+}
+
+.cloudShape::after {
+  width: 100px;
+  height: 100px;
+  top: -42px; /* Велика частина хмарки */
+  right: 10px;
+}
+
+.loadingText {
+  /* font-size: 24px;
+  color: #3498db;
+  font-family: "Comic Sans MS", cursive; */
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  color: #3498db;
+  font-family: "Comic Sans MS", cursive;
+  z-index: 999;
+}

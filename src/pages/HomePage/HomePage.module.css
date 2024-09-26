@@ -31,6 +31,10 @@
   width: 100px;
 }
 
+.inviteBtn {
+  width: 150px;
+}
+
 @media screen and (min-width: 425px) {
   .homeContainer {
     background-image: url(../../images/homeDesktop.png);
@@ -49,6 +53,7 @@
   .title {
     color: #4174b1;
     font-size: 90px;
+    font-family: "Comic Sans MS", cursive;
   }
 
   .subtitle {

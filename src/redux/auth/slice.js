@@ -30,7 +30,9 @@ const slice = createSlice({
       .addCase(logOut.fulfilled, () => {
         return initialState;
       })
-      .addCase(refreshUser.pending, state => (state.isRefreshing = true))
+      .addCase(refreshUser.pending, state => {
+        state.isRefreshing = true;
+      })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isRefreshing = false;
