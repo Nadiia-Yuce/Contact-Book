@@ -10,7 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@fontsource/fredoka-one": "^5.1.0",
     "@fontsource/roboto": "^5.1.0",
+    "@mui/material": "^6.1.1",
     "@reduxjs/toolkit": "^2.2.7",
     "animate.css": "^4.1.1",
     "axios": "^1.7.7",

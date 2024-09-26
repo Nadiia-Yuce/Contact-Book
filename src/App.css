@@ -1,0 +1,21 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+  background-image: url(./images/mobile.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+@media screen and (min-width: 425px) {
+  .container {
+    background-image: url(./images/tablet.png);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    background-image: url(./images/desktop.png);
+  }
+}

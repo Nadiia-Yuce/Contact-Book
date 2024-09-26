@@ -6,6 +6,7 @@ import { persistor, store } from "./redux/store.js";
 import { PersistGate } from "redux-persist/integration/react";
 import App from "./App.jsx";
 import "@fontsource/roboto";
+import "@fontsource/fredoka-one";
 import "modern-normalize";
 import "./index.css";
 import "animate.css";
