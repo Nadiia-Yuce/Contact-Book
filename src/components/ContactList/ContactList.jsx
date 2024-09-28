@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import {
   selectContacts,
@@ -6,14 +7,19 @@ import {
   selectLoading,
 } from "../../redux/contacts/selectors";
 import Contact from "../Contact/Contact";
+import DeleteModal from "../DeleteModal/DeleteModal";
 import css from "./ContactList.module.css";
 
 export default function ContactList() {
   const contacts = useSelector(selectContacts);
   const error = useSelector(selectError);
   const isLoading = useSelector(selectLoading);
-
   const filteredContacts = useSelector(selectFilteredContacts);
+  const [isRemoving, setIsRemoving] = useState(null);
+
+  const handleConfirmDelete = id => {
+    setIsRemoving(id);
+  };
 
   //   всередині ліста мепаємо початковий масив контактів, малюємо лішку з ключем
   // в Contact пропсом кидаємо ітерований обʼєкт масиву
@@ -32,11 +38,15 @@ export default function ContactList() {
               key={contact.id}
               className={`${css.item} animate__animated animate__fadeInUp`}
             >
-              <Contact contact={contact} />
+              <Contact
+                contact={contact}
+                isRemoving={isRemoving === contact.id}
+              />
             </li>
           ))}
         </ul>
       )}
+      <DeleteModal onRemove={handleConfirmDelete} />
     </div>
   );
 }

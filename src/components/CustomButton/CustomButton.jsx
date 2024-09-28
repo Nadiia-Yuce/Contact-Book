@@ -10,8 +10,6 @@ export const CustomButton = styled(Button)(({ theme }) => ({
   // },
   // стилі для екранів шириною 768px і менше
   [theme.breakpoints.down(768)]: {
-    backgroundColor: "rgba(65, 116, 177, 0.7)", // інший фон для мобільних
+    backgroundColor: "rgba(65, 116, 177, 0.7)",
   },
 }));
-
-// Test4@mail.de

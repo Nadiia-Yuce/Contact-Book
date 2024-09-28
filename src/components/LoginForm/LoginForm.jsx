@@ -1,11 +1,11 @@
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import { useState } from "react";
-import { FiEye, FiEyeOff } from "react-icons/fi";
 import * as Yup from "yup";
-import css from "./LoginForm.module.css";
-import common from "../RegistrationForm/RegistrationForm.module.css";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/auth/operations";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { FiEye, FiEyeOff } from "react-icons/fi";
+import css from "./LoginForm.module.css";
+import { Button, IconButton, InputAdornment, TextField } from "@mui/material";
 
 export default function LoginForm() {
   const [isPasswordVisible, setPasswordVisible] = useState(false);
@@ -46,39 +46,53 @@ export default function LoginForm() {
     >
       {({ isValid, dirty }) => (
         <Form className="form animate__animated animate__fadeInDown">
-          <div className="formGroup">
-            <label htmlFor="email" className="formLabel">
-              Email
-            </label>
-            <Field type="email" name="email" id="email" className="formInput" />
-            <ErrorMessage name="email" component="span" className="error" />
+          <div className={css.wrap}>
+            <Field
+              type="email"
+              name="email"
+              as={TextField}
+              label="Email"
+              variant="outlined"
+              sx={{ width: "250px" }}
+              helperText={<ErrorMessage name="email" />}
+            />
           </div>
-          <div className={`formGroup ${common.lastRegisterFormGroup}`}>
-            <label htmlFor="password" className="formLabel">
-              Password
-            </label>
+
+          <div className={css.wrap}>
             <Field
               type={isPasswordVisible ? "text" : "password"}
               name="password"
-              id="password"
-              className={`formInput ${common.password}`}
+              as={TextField}
+              label="Password"
+              variant="outlined"
+              sx={{ width: "250px", position: "relative" }}
+              helperText={<ErrorMessage name="password" />}
+              slotProps={{
+                input: {
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={togglePasswordVisibility}>
+                        {isPasswordVisible ? (
+                          <FiEye size={15} />
+                        ) : (
+                          <FiEyeOff size={15} />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                },
+              }}
             />
-            <button
-              type="button"
-              onClick={togglePasswordVisibility}
-              className={css.passwordToggleBtn}
-            >
-              {isPasswordVisible ? <FiEye size={15} /> : <FiEyeOff size={15} />}
-            </button>
-            <ErrorMessage name="password" component="span" className="error" />
           </div>
-          <button
+
+          <Button
+            variant="contained"
             type="submit"
-            className="formBtn"
             disabled={!isValid || !dirty}
+            sx={{ backgroundColor: "rgb(65, 116, 177)", width: "100px" }}
           >
             Log in
-          </button>
+          </Button>
         </Form>
       )}
     </Formik>

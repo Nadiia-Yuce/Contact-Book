@@ -3,7 +3,7 @@
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 4px 16px -4px rgba(0, 0, 0, 0.16);
 
   border-radius: 8px;
-  background-color: rgb(202, 200, 228);
+  background-color: var(--background);
   padding: 12px;
   position: relative;
   overflow: auto;
@@ -25,7 +25,7 @@
 .text {
   margin: 0;
   font-size: 18px;
-  color: rgb(73, 56, 115);
+  color: var(--text);
 }
 
 .tel {
@@ -37,21 +37,14 @@
   color: #ffffff;
 }
 
-.delete {
+.delete,
+.edit {
   position: absolute;
   top: 50%;
   transform: translate(-25%, -50%);
   right: 0;
-
-  padding: 6px 10px;
-  border: none;
-  border-radius: 4px;
-  background-color: rgb(124, 111, 156);
-  color: #f4f1f8;
-  transition: background-color 350ms ease;
 }
 
-.delete:focus,
-.delete:hover {
-  background-color: rgb(97, 76, 150);
+.edit {
+  right: 45px;
 }

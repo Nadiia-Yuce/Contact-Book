@@ -3,7 +3,7 @@ body {
   margin: 0 auto;
   background: linear-gradient(
     0deg,
-    rgba(184, 181, 230, 1) 20%,
+    rgb(136, 185, 244) 20%,
     rgba(255, 255, 255, 1) 100%
   );
 
@@ -38,10 +38,17 @@ button {
   outline: none;
 }
 
+:root {
+  --background: rgba(212, 231, 255, 0.6);
+  --text: rgba(0, 0, 0, 0.6);
+  --btn: rgba(65, 116, 177, 0.7);
+  --title: rgb(65, 116, 177);
+  --second-title: rgb(187, 216, 251);
+  --subtitle: #2d4f78;
+}
+
 .pageTitle {
   text-align: center;
-  /* margin-bottom: 30px; */
-  color: rgb(83, 83, 83);
 }
 
 .form {
@@ -53,73 +60,12 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(202, 200, 228);
-}
-
-.formGroup {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
-.formGroup:first-child {
-  margin-bottom: 30px;
-}
-
-.formLabel {
-  color: rgb(97, 76, 150);
-  font-size: 18px;
-  margin-bottom: 4px;
-}
-
-.formInput {
-  width: 250px;
-  padding: 8px 16px;
-  border-radius: 4px;
-  border: 2px solid transparent;
-  color: rgb(73, 56, 115);
-  transition: border 350ms ease;
-}
-
-.formInput:focus,
-.formInput:hover {
-  border: 2px solid rgb(124, 111, 156);
-}
-
-.formBtn {
-  width: 150px;
-  height: 35px;
-  /* margin-top: 50px; */
-  border: none;
-  border-radius: 4px;
-  background-color: rgb(124, 111, 156);
-  color: #f4f1f8;
-  transition: background-color 350ms ease;
-}
-
-.formBtn:focus,
-.formBtn:hover {
-  background-color: rgb(97, 76, 150);
-}
-
-.formBtn:disabled {
-  background-color: #b79ec0;
-  color: #666666;
-  cursor: not-allowed;
-}
-
-.error {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  margin-top: 4px;
-  color: rgb(149, 13, 13);
+  background-color: var(--background);
 }
 
 @media screen and (max-width: 768px) {
   .pageTitle {
     font-size: 26px;
-    /* margin-bottom: 16px; */
   }
 }
 
@@ -134,17 +80,3 @@ button {
     width: 500px;
   }
 }
-
-/* @media screen and (max-width: 375px) {
-  body {
-    max-width: 375px;
-    padding: 30px 16px;
-  }
-} */
-
-/*! Для центрування всього */
-/* #root {
-  width: 100%;
-  margin: 0;
-  text-align: center;
-} */

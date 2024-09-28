@@ -1,21 +1,22 @@
-import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/contacts/operations";
+import { openDeleteModal, setCurrentContact } from "../../redux/contacts/slice";
 import { FaPhone, FaUser } from "react-icons/fa";
-import css from "./Contact.module.css";
+import { IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import clsx from "clsx";
+import css from "./Contact.module.css";
 
-export default function Contact({ contact: { name, number, id } }) {
-  //локальний стан для коректного відображення анімації
-  const [isRemoving, setIsRemoving] = useState(false);
+export default function Contact({ contact: { name, number, id }, isRemoving }) {
   const dispatch = useDispatch();
 
-  const handleRemove = () => {
-    setIsRemoving(true);
+  const handleClick = () => {
+    dispatch(setCurrentContact({ id, name, number }));
+    dispatch(openDeleteModal());
+  };
 
-    setTimeout(() => {
-      dispatch(deleteContact(id));
-    }, 500);
+  const handleEdit = () => {
+    return;
   };
 
   return (
@@ -28,19 +29,26 @@ export default function Contact({ contact: { name, number, id } }) {
       )}
     >
       <div className={css.wrap}>
-        <FaUser size={16} color="rgb(97, 76, 150)" />
+        <FaUser size={16} color="rgb(0, 0, 0, 0.6)" />
         <p className={css.text}>{name}</p>
       </div>
       <div className={css.wrap}>
-        <FaPhone size={16} color="rgb(97, 76, 150)" />
+        <FaPhone size={16} color="rgb(0, 0, 0, 0.6)" />
         {/* Клікабельний номер */}
         <a className={`${css.text} ${css.tel}`} href={`tel: ${number}`}>
           {number}
         </a>
       </div>
-      <button type="button" className={css.delete} onClick={handleRemove}>
-        Delete
-      </button>
+      <div className={css.delete}>
+        <IconButton aria-label="delete" type="button" onClick={handleClick}>
+          <DeleteIcon />
+        </IconButton>
+      </div>
+      <div className={css.edit}>
+        <IconButton aria-label="edit" type="button" onClick={handleEdit}>
+          <EditIcon />
+        </IconButton>
+      </div>
     </div>
   );
 }

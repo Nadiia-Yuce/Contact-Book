@@ -1,6 +1,31 @@
+.container {
+  padding-top: 120px;
+  padding-bottom: 60px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.pageTitle {
+  font-family: "Comic Sans MS", cursive;
+  text-align: center;
+  color: var(--second-title);
+  font-size: 36px;
+  margin-bottom: 16px;
+}
+
 .loader {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 30px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 60px 16px 60px 16px;
+  }
+  .pageTitle {
+    font-size: 46px;
+    margin-bottom: 30px;
+  }
 }

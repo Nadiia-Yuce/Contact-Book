@@ -1,0 +1,21 @@
+.navigation {
+  display: flex;
+  align-items: center;
+}
+
+.contacts {
+  font-size: 18px;
+  color: var(--title);
+}
+
+@media screen and (min-width: 425px) {
+  .contacts {
+    font-size: 22px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .contacts {
+    font-size: 28px;
+  }
+}

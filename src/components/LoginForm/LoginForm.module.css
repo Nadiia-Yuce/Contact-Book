@@ -8,3 +8,7 @@
   border: none;
   cursor: pointer;
 }
+
+.wrap {
+  margin-bottom: 20px;
+}

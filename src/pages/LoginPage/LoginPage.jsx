@@ -1,4 +1,3 @@
-// import { CiLogin } from "react-icons/ci";
 import { useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -23,10 +22,7 @@ export default function LoginPage() {
 
   return (
     <div className={css.loginPageContainer}>
-      <div className={css.titleWrap}>
-        <h1 className="pageTitle">Wellcome back! </h1>
-        {/* <CiLogin size={25} color="rgb(83, 83, 83)" /> */}
-      </div>
+      <h1 className={css.pageTitle}>Wellcome back! </h1>
       <LoginForm />
       <Toaster position="top-right" />
     </div>

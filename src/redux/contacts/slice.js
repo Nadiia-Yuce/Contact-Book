@@ -6,6 +6,9 @@ const initialState = {
   items: [],
   loading: false,
   error: null,
+  currentContact: null,
+  editIsOpen: false,
+  deleteIsOpen: false,
 };
 
 //? Детальніше по слайсу див. коментарі нижче
@@ -13,6 +16,17 @@ const initialState = {
 const slice = createSlice({
   name: "contacts",
   initialState,
+  reducers: {
+    setCurrentContact: (state, action) => {
+      state.currentContact = action.payload;
+    },
+    openDeleteModal: state => {
+      state.deleteIsOpen = true;
+    },
+    closeDeleteModal: state => {
+      state.deleteIsOpen = false;
+    },
+  },
 
   extraReducers: builder => {
     builder
@@ -72,6 +86,8 @@ const slice = createSlice({
 });
 
 export default slice.reducer;
+export const { setCurrentContact, openDeleteModal, closeDeleteModal } =
+  slice.actions;
 
 //! Як працює слайс - екшени + редюсер
 

@@ -1,27 +1,32 @@
-.wellcome {
+.auth {
   font-size: 18px;
   color: var(--title);
-  margin-bottom: 8px;
-}
-
-.userMenu {
-  text-align: right;
-  padding-top: 12px;
+  display: flex;
+  gap: 16px;
+  padding-top: 8px;
   padding-right: 8px;
 }
 
+.link {
+  transition: color 350ms ease;
+}
+
+.link:hover {
+  color: #fff;
+}
+
 @media screen and (min-width: 425px) {
-  .wellcome {
+  .auth {
     font-size: 22px;
   }
 }
 
 @media screen and (min-width: 768px) {
-  .wellcome {
+  .auth {
     font-size: 28px;
   }
 
-  .userMenu {
+  .auth {
     padding-top: 8px;
   }
 }

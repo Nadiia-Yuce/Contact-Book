@@ -13,9 +13,16 @@
 }
 
 .warning {
-  color: rgb(97, 76, 150);
-  font-size: 18px;
   text-align: center;
+  width: 195px;
+  padding: 8px 16px;
+  color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(212, 231, 255, 0.5);
+  border-radius: 4px;
+  margin: 0 auto;
+
+  font-size: 16px;
+  /* text-align: center; */
 }
 
 @media screen and (min-width: 769px) {
@@ -31,7 +38,7 @@
   }
 }
 
-@media screen and (min-width: 375px), (max-width: 768) {
+@media screen and (min-width: 320px), (max-width: 768) {
   .item {
     flex-direction: column;
     flex-wrap: nowrap;

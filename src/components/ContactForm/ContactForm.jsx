@@ -2,8 +2,11 @@ import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-// import css from "./ContactForm.module.css";
+import TextField from "@mui/material/TextField";
+import css from "./ContactForm.module.css";
 import "../../index.css";
+import { Button } from "@mui/material";
+import toast from "react-hot-toast";
 
 export default function ContactForm() {
   const dispatch = useDispatch();
@@ -13,6 +16,7 @@ export default function ContactForm() {
 
   const handleSubmit = (values, actions) => {
     dispatch(addContact(values));
+    toast.success("New contact added!");
     actions.resetForm();
   };
 
@@ -38,29 +42,35 @@ export default function ContactForm() {
       надає в межах render-функції або в children пропсі (ще можна отримати values-значення полів) */}
       {({ isValid, dirty }) => (
         <Form className={`form animate__animated animate__fadeInDown`}>
-          <div className="formGroup">
-            <label htmlFor="name" className="formLabel">
-              Name
-            </label>
-            <Field name="name" id="name" className="formInput" />
-            <ErrorMessage name="name" component="span" className="error" />
+          <div className={css.wrap}>
+            <Field
+              name="name"
+              className={css.input}
+              as={TextField}
+              label="Name"
+              variant="outlined"
+              helperText={<ErrorMessage name="name" />}
+            />
           </div>
 
-          <div className="formGroup">
-            <label htmlFor="number" className="formLabel">
-              Number
-            </label>
-            <Field name="number" id="number" className="formInput" />
-            <ErrorMessage name="number" component="span" className="error" />
+          <div className={css.wrap}>
+            <Field
+              name="number"
+              className={css.input}
+              as={TextField}
+              label="Number"
+              variant="outlined"
+              helperText={<ErrorMessage name="number" />}
+            />
           </div>
-
-          <button
+          <Button
+            variant="contained"
             type="submit"
-            className="formBtn"
             disabled={!isValid || !dirty}
+            sx={{ backgroundColor: "rgb(65, 116, 177)" }}
           >
             Add contact
-          </button>
+          </Button>
         </Form>
       )}
     </Formik>

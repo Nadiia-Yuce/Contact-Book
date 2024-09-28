@@ -37,9 +37,6 @@
 }
 
 .loadingText {
-  /* font-size: 24px;
-  color: #3498db;
-  font-family: "Comic Sans MS", cursive; */
   position: absolute;
   top: 35%;
   left: 50%;
@@ -47,5 +44,5 @@
   font-size: 18px;
   color: #3498db;
   font-family: "Comic Sans MS", cursive;
-  z-index: 999;
+  z-index: 9;
 }
