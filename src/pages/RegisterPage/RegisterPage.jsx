@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import toast, { Toaster } from "react-hot-toast";
+import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 import RegistrationForm from "../../components/RegistrationForm/RegistrationForm";
 import { selectError, selectIsLoggedIn } from "../../redux/auth/selectors";
 import css from "./RegisterPage.module.css";
@@ -21,9 +22,15 @@ export default function RegisterPage() {
 
   return (
     <div className={css.registerPageContainer}>
-      <h1 className={`pageTitle ${css.title}`}>Create your account ✍🏻 </h1>
+      <h1 className={css.pageTitle}>Create your accoun </h1>
       <RegistrationForm />
-      <Toaster position="top-right" />
+      <p className={css.login}>
+        Already have an account?
+        <Link to="/login" className={css.link}>
+          Log in
+        </Link>
+        !
+      </p>
     </div>
   );
 }

@@ -8,6 +8,7 @@ import { selectIsRefreshing } from "./redux/auth/selectors";
 import LoadingCloud from "./components/LoadingCloud/LoadingCloud";
 import RestrictedRoute from "./RestrictedRoute";
 import PrivatRoute from "./PrivatRoute";
+import { Toaster } from "react-hot-toast";
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 const RegisterPage = lazy(() => import("./pages/RegisterPage/RegisterPage"));
@@ -58,6 +59,7 @@ export default function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Layout>
+      <Toaster position="top-center" />
     </div>
   );
 }

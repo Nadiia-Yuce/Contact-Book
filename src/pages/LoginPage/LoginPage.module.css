@@ -15,6 +15,23 @@
   margin-bottom: 16px;
 }
 
+.registration {
+  margin-top: 16px;
+  color: var(--text);
+}
+
+.link {
+  margin-left: 4px;
+  margin-right: 4px;
+  color: var(--title);
+  text-decoration: underline;
+  transition: color 200ms ease;
+}
+
+.link:hover {
+  color: var(--accent);
+}
+
 @media screen and (min-width: 768px) {
   .loginPageContainer {
     padding: 0 16px;

@@ -3,9 +3,9 @@ import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
 import { useState } from "react";
+import { Button, IconButton, InputAdornment, TextField } from "@mui/material";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import css from "./RegistrationForm.module.css";
-import "../../index.css";
 
 export default function RegistrationForm() {
   const dispatch = useDispatch();
@@ -51,53 +51,71 @@ export default function RegistrationForm() {
     >
       {({ isValid, dirty }) => (
         <Form className="form animate__animated animate__fadeInDown">
-          <div className={`formGroup ${css.registerFormGroup}`}>
-            <label htmlFor="name" className="formLabel">
-              Username
-            </label>
-            <Field name="name" id="name" className="formInput" />
-            <ErrorMessage name="name" component="span" className="error" />
+          {/* <div className={css.wrap}>
+            <label htmlFor="name">Username</label>
+            <Field name="name" id="name" />
+            <ErrorMessage name="name" component="span" />
+          </div> */}
+
+          <div className={css.wrap}>
+            <Field
+              type="text"
+              name="name"
+              as={TextField}
+              label="Username"
+              variant="outlined"
+              sx={{ width: "250px" }}
+              helperText={<ErrorMessage name="name" />}
+            />
           </div>
 
-          <div className={`formGroup ${css.registerFormGroup}`}>
-            <label htmlFor="email" className="formLabel">
-              Email
-            </label>
-            <Field type="email" name="email" id="email" className="formInput" />
-            <ErrorMessage name="email" component="span" className="error" />
+          <div className={css.wrap}>
+            <Field
+              type="email"
+              name="email"
+              as={TextField}
+              label="Email"
+              variant="outlined"
+              sx={{ width: "250px" }}
+              helperText={<ErrorMessage name="email" />}
+            />
           </div>
 
-          <div className={`formGroup ${css.lastRegisterFormGroup}`}>
-            <label htmlFor="password" className="formLabel">
-              Password
-            </label>
+          <div className={css.wrap}>
             <Field
               type={isPasswordVisible ? "text" : "password"}
               name="password"
-              id="password"
-              className={`formInput ${css.password}`}
-              style={{ position: "relative" }}
+              as={TextField}
+              label="Password"
+              variant="outlined"
+              sx={{ width: "250px", position: "relative" }}
+              helperText={<ErrorMessage name="password" />}
+              slotProps={{
+                input: {
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={togglePasswordVisibility}>
+                        {isPasswordVisible ? (
+                          <FiEye size={15} />
+                        ) : (
+                          <FiEyeOff size={15} />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                },
+              }}
             />
-
-            {/* Іконка для показу/приховування пароля */}
-            <button
-              type="button"
-              onClick={togglePasswordVisibility}
-              className={css.passwordToggleBtn}
-            >
-              {isPasswordVisible ? <FiEye size={15} /> : <FiEyeOff size={15} />}
-            </button>
-
-            <ErrorMessage name="password" component="span" className="error" />
           </div>
 
-          <button
+          <Button
+            variant="contained"
             type="submit"
-            className="formBtn"
             disabled={!isValid || !dirty}
+            sx={{ backgroundColor: "rgb(65, 116, 177)", width: "100px" }}
           >
             Register
-          </button>
+          </Button>
         </Form>
       )}
     </Formik>

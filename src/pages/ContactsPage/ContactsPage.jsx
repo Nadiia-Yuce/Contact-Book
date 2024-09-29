@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchContacts } from "../../redux/contacts/operations";
 import { selectError, selectLoading } from "../../redux/contacts/selectors";
-import { Toaster } from "react-hot-toast";
 import { Grid } from "react-loader-spinner";
 import ContactForm from "../../components/ContactForm/ContactForm";
 import SearchBox from "../../components/SearchBox/SearchBox";
@@ -32,7 +31,6 @@ export default function ContactsPage() {
         <ContactList />
       )}
       {error !== null && <RequestError />}
-      <Toaster position="bottom-center" />
     </div>
   );
 }

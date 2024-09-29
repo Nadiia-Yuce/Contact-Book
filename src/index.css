@@ -45,6 +45,7 @@ button {
   --title: rgb(65, 116, 177);
   --second-title: rgb(187, 216, 251);
   --subtitle: #2d4f78;
+  --accent: #f39122;
 }
 
 .pageTitle {

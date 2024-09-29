@@ -4,19 +4,40 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 30px;
+  padding: 0 10px;
 }
 
-.title {
-  margin-bottom: 30px;
+.pageTitle {
+  font-family: "Comic Sans MS", cursive;
+  text-align: center;
+  color: var(--text);
+  font-size: 36px;
+  margin-bottom: 16px;
 }
 
-@media screen and (max-width: 768px) {
-  .registerPageContainer {
+.login {
+  margin-top: 16px;
+  color: var(--text);
+}
+
+.link {
+  margin-left: 4px;
+  color: var(--title);
+  text-decoration: underline;
+  transition: color 200ms ease;
+}
+
+.link:hover {
+  color: var(--accent);
+}
+
+@media screen and (min-width: 768px) {
+  .loginPageContainer {
     padding: 0 16px;
   }
 
-  .title {
-    margin-bottom: 16px;
+  .pageTitle {
+    font-size: 46px;
+    margin-bottom: 30px;
   }
 }
