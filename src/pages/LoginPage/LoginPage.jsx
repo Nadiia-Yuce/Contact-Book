@@ -1,11 +1,10 @@
 import { useEffect } from "react";
-import toast from "react-hot-toast";
-
-import css from "./LoginPage.module.css";
-import LoginForm from "../../components/LoginForm/LoginForm";
 import { selectIsLoggedIn, selectError } from "../../redux/auth/selectors.js";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import LoginForm from "../../components/LoginForm/LoginForm";
+import css from "./LoginPage.module.css";
 
 export default function LoginPage() {
   const isLoggedIn = useSelector(selectIsLoggedIn);

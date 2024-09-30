@@ -5,7 +5,7 @@ import css from "./RequestError.module.css";
 export default function RequestError() {
   const error = useSelector(selectError);
 
-  //! Тут треба подумати як виводити помилки для розробників
+  //! Як виводити помилки для розробників
   // console.log(error);
   // console.log(import.meta.env.MODE);
   // console.log(typeof error);

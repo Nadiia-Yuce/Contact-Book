@@ -1,0 +1,18 @@
+.notFound {
+  font-size: 30px;
+  color: var(--text);
+  font-family: "Comic Sans MS", cursive;
+  text-align: center;
+
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 768px) {
+  .notFound {
+    font-size: 4vw;
+  }
+}

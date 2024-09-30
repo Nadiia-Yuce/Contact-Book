@@ -9,6 +9,7 @@ import {
 import Contact from "../Contact/Contact";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import css from "./ContactList.module.css";
+import EditModal from "../EditModal/EditModal";
 
 export default function ContactList() {
   const contacts = useSelector(selectContacts);
@@ -46,6 +47,7 @@ export default function ContactList() {
           ))}
         </ul>
       )}
+      <EditModal />
       <DeleteModal onRemove={handleConfirmDelete} />
     </div>
   );

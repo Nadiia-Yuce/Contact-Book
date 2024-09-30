@@ -1,3 +1,5 @@
+import css from "./NotFound.module.css";
+
 export default function NotFoundPage() {
-  return <div>Error 404! Page is not found!</div>;
+  return <h1 className={css.notFound}>Error 404! Page is not found!😰</h1>;
 }

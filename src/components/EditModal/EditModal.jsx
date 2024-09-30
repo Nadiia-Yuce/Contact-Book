@@ -1,5 +1,9 @@
-import { useSelector } from "react-redux";
-import { selectEditIsOpen } from "../../redux/contacts/selectors";
+import { useDispatch, useSelector } from "react-redux";
+import * as Yup from "yup";
+import {
+  selectCurrentContact,
+  selectEditIsOpen,
+} from "../../redux/contacts/selectors";
 import {
   Backdrop,
   Fade,
@@ -9,13 +13,20 @@ import {
   TextField,
   Button,
 } from "@mui/material";
-import css from "./EditModal.module.css";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { editContact } from "../../redux/contacts/operations";
+import { closeEditModal, setCurrentContact } from "../../redux/contacts/slice";
+import toast from "react-hot-toast";
 
 export default function EditModal() {
-  //   const [open, setOpen] = React.useState(false);
-  //   const handleOpen = () => setOpen(true);
-  //   const handleClose = () => setOpen(false);
   const isOpen = useSelector(selectEditIsOpen);
+  const dispatch = useDispatch();
+  const currentContact = useSelector(selectCurrentContact);
+
+  const initialValues = {
+    name: currentContact?.name || "",
+    number: currentContact?.number || "",
+  };
 
   const style = {
     position: "absolute",
@@ -28,6 +39,27 @@ export default function EditModal() {
     border: "none",
     boxShadow: 24,
     p: 4,
+  };
+
+  const validationSchema = Yup.object().shape({
+    name: Yup.string()
+      .min(3, "Too short! Minimum 3 letters.")
+      .max(50, "Too long! Maximum 50 letters.")
+      .required("Name is required!"),
+    number: Yup.string()
+      .matches(/^\d{7,14}$/, "Phone number must be between 7 and 14 digits.")
+      .required("Phone number is required!"),
+  });
+
+  const handleEdit = () => {
+    dispatch(editContact(currentContact));
+    dispatch(closeEditModal());
+    toast.success("Changes saved");
+  };
+
+  const handleCancel = () => {
+    dispatch(closeEditModal());
+    dispatch(setCurrentContact(null));
   };
 
   return (
@@ -47,50 +79,69 @@ export default function EditModal() {
       >
         <Fade in={isOpen}>
           <Box sx={style}>
-            <Typography
-              id="transition-modal-title"
-              variant="h6"
-              component="h2"
-              sx={{ textAlign: "center" }}
+            <Formik
+              initialValues={initialValues}
+              onSubmit={handleEdit}
+              validationSchema={validationSchema}
             >
-              Edit your contact:
-            </Typography>
-            <TextField
-              variant="outlined"
-              label="Name"
-              name="name"
-              sx={{
-                width: "100%",
-                margin: "16px 0",
-              }}
-            />
-            <TextField
-              variant="outlined"
-              label="Number"
-              name="number"
-              sx={{ width: "100%", marginBottom: "16px" }}
-            />
-            <div className={css.btnWrap}>
-              <Button
-                variant="contained"
-                sx={{
-                  backgroundColor: "rgba(65, 116, 177, 0.7)",
-                  width: "100px",
-                }}
-              >
-                Save
-              </Button>
+              {({ isValid, dirty }) => (
+                <Form>
+                  <Typography
+                    id="transition-modal-title"
+                    variant="h6"
+                    component="h2"
+                    sx={{ textAlign: "center", marginBottom: "16px" }}
+                  >
+                    Edit your contact:
+                  </Typography>
 
-              <Button
-                variant="contained"
-                sx={{
-                  backgroundColor: "rgba(65, 116, 177, 0.7)",
-                  width: "100px",
-                }}
-              >
-                Cancel
-              </Button>
-            </div>
+                  <Field
+                    name="name"
+                    as={TextField}
+                    label="Name"
+                    variant="outlined"
+                    helperText={<ErrorMessage name="name" />}
+                    sx={{ width: "100%", marginBottom: "16px" }}
+                  />
+
+                  <Field
+                    name="number"
+                    as={TextField}
+                    label="Number"
+                    variant="outlined"
+                    helperText={<ErrorMessage name="number" />}
+                    sx={{ width: "100%", marginBottom: "16px" }}
+                  />
+
+                  <div
+                    style={{ display: "flex", justifyContent: "space-around" }}
+                  >
+                    <Button
+                      onClick={handleEdit}
+                      variant="contained"
+                      disabled={!isValid || !dirty}
+                      sx={{
+                        backgroundColor: "rgba(65, 116, 177, 0.7)",
+                        width: "100px",
+                      }}
+                    >
+                      Save
+                    </Button>
+
+                    <Button
+                      onClick={handleCancel}
+                      variant="contained"
+                      sx={{
+                        backgroundColor: "rgba(65, 116, 177, 0.7)",
+                        width: "100px",
+                      }}
+                    >
+                      Cancel
+                    </Button>
+                  </div>
+                </Form>
+              )}
+            </Formik>
           </Box>
         </Fade>
       </Modal>

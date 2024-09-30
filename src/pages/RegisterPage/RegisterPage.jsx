@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import toast from "react-hot-toast";
-import RegistrationForm from "../../components/RegistrationForm/RegistrationForm";
 import { selectError, selectIsLoggedIn } from "../../redux/auth/selectors";
+import RegistrationForm from "../../components/RegistrationForm/RegistrationForm";
+import toast from "react-hot-toast";
 import css from "./RegisterPage.module.css";
 
 export default function RegisterPage() {

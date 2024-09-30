@@ -1,8 +1,8 @@
-import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
-import { register } from "../../redux/auth/operations";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { register } from "../../redux/auth/operations";
 import { Button, IconButton, InputAdornment, TextField } from "@mui/material";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import css from "./RegistrationForm.module.css";
@@ -51,12 +51,6 @@ export default function RegistrationForm() {
     >
       {({ isValid, dirty }) => (
         <Form className="form animate__animated animate__fadeInDown">
-          {/* <div className={css.wrap}>
-            <label htmlFor="name">Username</label>
-            <Field name="name" id="name" />
-            <ErrorMessage name="name" component="span" />
-          </div> */}
-
           <div className={css.wrap}>
             <Field
               type="text"

@@ -1,12 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Backdrop, Fade, Modal, Box, Typography, Button } from "@mui/material";
+import { deleteContact } from "../../redux/contacts/operations";
 import toast from "react-hot-toast";
 import {
   selectCurrentContact,
   selectDeleteIsOpen,
 } from "../../redux/contacts/selectors";
-import { deleteContact } from "../../redux/contacts/operations";
-import { closeDeleteModal } from "../../redux/contacts/slice";
+import {
+  closeDeleteModal,
+  setCurrentContact,
+} from "../../redux/contacts/slice";
 
 export default function DeleteModal({ onRemove }) {
   const isOpen = useSelector(selectDeleteIsOpen);
@@ -25,6 +28,7 @@ export default function DeleteModal({ onRemove }) {
 
   const handleCancel = () => {
     dispatch(closeDeleteModal());
+    dispatch(setCurrentContact(null));
   };
 
   const style = {

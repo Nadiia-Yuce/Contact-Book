@@ -1,14 +1,14 @@
 import { lazy, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import Layout from "./components/Layout/Layout";
-import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import { refreshUser } from "./redux/auth/operations";
 import { selectIsRefreshing } from "./redux/auth/selectors";
+import { Toaster } from "react-hot-toast";
 import LoadingCloud from "./components/LoadingCloud/LoadingCloud";
 import RestrictedRoute from "./RestrictedRoute";
 import PrivatRoute from "./PrivatRoute";
-import { Toaster } from "react-hot-toast";
+import Layout from "./components/Layout/Layout";
+import "./App.css";
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 const RegisterPage = lazy(() => import("./pages/RegisterPage/RegisterPage"));
@@ -18,7 +18,6 @@ const NotFoundPage = lazy(() => import("./pages/NotFound/NotFound"));
 
 export default function App() {
   const dispatch = useDispatch();
-  // const location = useLocation();
   const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {

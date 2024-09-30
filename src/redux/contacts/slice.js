@@ -1,5 +1,10 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { addContact, deleteContact, fetchContacts } from "./operations";
+import {
+  addContact,
+  deleteContact,
+  editContact,
+  fetchContacts,
+} from "./operations";
 import { logOut } from "../auth/operations";
 
 const initialState = {
@@ -26,6 +31,12 @@ const slice = createSlice({
     closeDeleteModal: state => {
       state.deleteIsOpen = false;
     },
+    openEditModal: state => {
+      state.editIsOpen = true;
+    },
+    closeEditModal: state => {
+      state.editIsOpen = false;
+    },
   },
 
   extraReducers: builder => {
@@ -50,8 +61,21 @@ const slice = createSlice({
         state.items = state.items.filter(
           contact => contact.id !== action.payload.id
         );
+        state.currentContact = null;
         state.loading = false;
       })
+
+      //----------------------PATCH-------------------------------//
+
+      .addCase(editContact.fulfilled, (state, action) => {
+        const index = state.items.findIndex(item => {
+          item.id === action.payload.id;
+        });
+        state.items.splice(index, 1, action.payload);
+        state.currentContact = null;
+        state.loading = false;
+      })
+
       //----------------------logout-------------------------------//
 
       .addCase(logOut.fulfilled, () => {
@@ -64,7 +88,8 @@ const slice = createSlice({
         isAnyOf(
           fetchContacts.pending,
           addContact.pending,
-          deleteContact.pending
+          deleteContact.pending,
+          editContact.pending
         ),
         state => {
           state.loading = true;
@@ -75,7 +100,8 @@ const slice = createSlice({
         isAnyOf(
           fetchContacts.rejected,
           addContact.rejected,
-          deleteContact.rejected
+          deleteContact.rejected,
+          editContact.rejected
         ),
         (state, action) => {
           state.loading = false;
@@ -86,8 +112,13 @@ const slice = createSlice({
 });
 
 export default slice.reducer;
-export const { setCurrentContact, openDeleteModal, closeDeleteModal } =
-  slice.actions;
+export const {
+  setCurrentContact,
+  openDeleteModal,
+  closeDeleteModal,
+  openEditModal,
+  closeEditModal,
+} = slice.actions;
 
 //! Як працює слайс - екшени + редюсер
 

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchContacts } from "../../redux/contacts/operations";
 import { selectError, selectLoading } from "../../redux/contacts/selectors";
-import { Grid } from "react-loader-spinner";
+import { LinearProgress } from "@mui/material";
 import ContactForm from "../../components/ContactForm/ContactForm";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import RequestError from "../../components/RequestError/RequestError";
@@ -23,14 +23,14 @@ export default function ContactsPage() {
       <h1 className={css.pageTitle}>My contact book</h1>
       <ContactForm />
       <SearchBox />
-      {isLoading && !error ? (
-        <div className={css.loader}>
-          <Grid color="#fff" />
-        </div>
-      ) : (
-        <ContactList />
-      )}
+      <ContactList />
+
       {error !== null && <RequestError />}
+      {isLoading && !error && (
+        <div className={css.loader}>
+          <LinearProgress />
+        </div>
+      )}
     </div>
   );
 }

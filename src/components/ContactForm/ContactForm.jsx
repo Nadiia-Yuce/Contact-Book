@@ -2,16 +2,14 @@ import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import TextField from "@mui/material/TextField";
-import css from "./ContactForm.module.css";
-import "../../index.css";
 import { Button } from "@mui/material";
+import TextField from "@mui/material/TextField";
 import toast from "react-hot-toast";
+import css from "./ContactForm.module.css";
 
 export default function ContactForm() {
   const dispatch = useDispatch();
 
-  //початкові значення для обовʼязкового пропсу initialValues в Formik. Беруться з атрибуту name в інпутах
   const initialValues = { name: "", number: "" };
 
   const handleSubmit = (values, actions) => {
@@ -20,8 +18,6 @@ export default function ContactForm() {
     actions.resetForm();
   };
 
-  //бібліотека для валідації "yup"; схема валідації полів; передається пропсом в Formik
-  //помилки валідації візуалізуємо через компонент ErrorMessage, який додаємо до кожного філда
   const validationSchema = Yup.object().shape({
     name: Yup.string()
       .min(3, "Too short! Minimum 3 letters.")

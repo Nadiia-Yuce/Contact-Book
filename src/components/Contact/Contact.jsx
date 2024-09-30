@@ -1,5 +1,9 @@
 import { useDispatch } from "react-redux";
-import { openDeleteModal, setCurrentContact } from "../../redux/contacts/slice";
+import {
+  openDeleteModal,
+  openEditModal,
+  setCurrentContact,
+} from "../../redux/contacts/slice";
 import { FaPhone, FaUser } from "react-icons/fa";
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -16,7 +20,8 @@ export default function Contact({ contact: { name, number, id }, isRemoving }) {
   };
 
   const handleEdit = () => {
-    return;
+    dispatch(setCurrentContact({ id, name, number }));
+    dispatch(openEditModal());
   };
 
   return (
