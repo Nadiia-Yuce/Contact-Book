@@ -69,6 +69,7 @@ const slice = createSlice({
 
       .addCase(editContact.fulfilled, (state, action) => {
         const index = state.items.findIndex(item => {
+          //Тут ти забула return
           return item.id === action.payload.id;
         });
         state.items.splice(index, 1, action.payload);

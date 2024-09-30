@@ -23,11 +23,6 @@ export default function EditModal() {
   const dispatch = useDispatch();
   const currentContact = useSelector(selectCurrentContact);
 
-  // const initialValues = {
-  //   name: currentContact?.name || "",
-  //   number: currentContact?.number || "",
-  // };
-
   const initialValues = currentContact;
 
   const style = {
@@ -35,7 +30,7 @@ export default function EditModal() {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 400,
+    width: { xs: "300px", sm: "400px" },
     bgcolor: "rgba(212, 231, 255, 0.7)",
     borderRadius: 2,
     border: "none",
@@ -71,7 +66,7 @@ export default function EditModal() {
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         open={isOpen}
-        // onClose={handleClose}
+        onClose={handleCancel}
         closeAfterTransition
         slots={{ backdrop: Backdrop }}
         slotProps={{

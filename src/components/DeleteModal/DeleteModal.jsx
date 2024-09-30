@@ -28,7 +28,9 @@ export default function DeleteModal({ onRemove }) {
 
   const handleCancel = () => {
     dispatch(closeDeleteModal());
-    dispatch(setCurrentContact(null));
+
+    //Логіка скидання currentContact перенесена в подію onExited на <Fade/>, який відповідає за анімацію модалки
+    // dispatch(setCurrentContact(null));
   };
 
   const style = {
@@ -59,7 +61,7 @@ export default function DeleteModal({ onRemove }) {
           },
         }}
       >
-        <Fade in={isOpen}>
+        <Fade in={isOpen} onExited={() => dispatch(setCurrentContact(null))}>
           <Box sx={style}>
             <Typography
               id="transition-modal-title"
