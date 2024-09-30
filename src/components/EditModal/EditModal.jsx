@@ -23,10 +23,12 @@ export default function EditModal() {
   const dispatch = useDispatch();
   const currentContact = useSelector(selectCurrentContact);
 
-  const initialValues = {
-    name: currentContact?.name || "",
-    number: currentContact?.number || "",
-  };
+  // const initialValues = {
+  //   name: currentContact?.name || "",
+  //   number: currentContact?.number || "",
+  // };
+
+  const initialValues = currentContact;
 
   const style = {
     position: "absolute",
@@ -51,8 +53,9 @@ export default function EditModal() {
       .required("Phone number is required!"),
   });
 
-  const handleEdit = () => {
-    dispatch(editContact(currentContact));
+  const handleEdit = (values, actions) => {
+    dispatch(editContact(values));
+    actions.resetForm();
     dispatch(closeEditModal());
     toast.success("Changes saved");
   };
@@ -117,7 +120,7 @@ export default function EditModal() {
                     style={{ display: "flex", justifyContent: "space-around" }}
                   >
                     <Button
-                      onClick={handleEdit}
+                      type="submit"
                       variant="contained"
                       disabled={!isValid || !dirty}
                       sx={{
@@ -129,6 +132,7 @@ export default function EditModal() {
                     </Button>
 
                     <Button
+                      type="button"
                       onClick={handleCancel}
                       variant="contained"
                       sx={{

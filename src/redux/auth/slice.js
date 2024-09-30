@@ -50,6 +50,9 @@ const slice = createSlice({
         (state, action) => {
           state.isLoading = false;
           state.error = action.payload;
+          //Коли токен expired
+          state.isLoggedIn = false;
+          state.token = null;
         }
       );
   },
