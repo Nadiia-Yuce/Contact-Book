@@ -49,7 +49,8 @@ export default function RegistrationForm() {
       onSubmit={handleSubmit}
       validationSchema={validationSchema}
     >
-      {({ touched, errors, isValid, dirty }) => (
+      {/* Тут ще можуть бути властивості isValid, dirty */}
+      {({ touched, errors }) => (
         <Form className="form animate__animated animate__fadeInDown">
           <div className={css.wrap}>
             <Field
@@ -108,7 +109,7 @@ export default function RegistrationForm() {
           <Button
             variant="contained"
             type="submit"
-            disabled={!isValid || !dirty}
+            // disabled={!isValid || !dirty}
             sx={{ backgroundColor: "rgb(65, 116, 177)", width: "100px" }}
           >
             Register

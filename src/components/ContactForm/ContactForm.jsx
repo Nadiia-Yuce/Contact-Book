@@ -24,7 +24,12 @@ export default function ContactForm() {
       .max(50, "Too long! Maximum 50 letters.")
       .required("Name is required!"),
     number: Yup.string()
-      .matches(/^\d{7,14}$/, "Phone number must be between 7 and 14 digits.")
+      .matches(
+        /^[+]?[\d\s()-]*$/,
+        "Phone number can only contain digits, spaces, dashes, parentheses, and a plus sign."
+      )
+      .min(3, "Too short! Minimum 3 digits.")
+      .max(17, "Too long! Maximum 17 characters.")
       .required("Phone number is required!"),
   });
 
