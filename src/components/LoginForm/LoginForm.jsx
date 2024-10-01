@@ -44,7 +44,7 @@ export default function LoginForm() {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      {({ isValid, dirty }) => (
+      {({ touched, errors, isValid, dirty }) => (
         <Form className="form animate__animated animate__fadeInDown">
           <div className={css.wrap}>
             <Field
@@ -54,6 +54,7 @@ export default function LoginForm() {
               label="Email"
               variant="outlined"
               sx={{ width: "250px" }}
+              error={touched.email && Boolean(errors.email)}
               helperText={<ErrorMessage name="email" />}
             />
           </div>
@@ -66,6 +67,7 @@ export default function LoginForm() {
               label="Password"
               variant="outlined"
               sx={{ width: "250px", position: "relative" }}
+              error={touched.password && Boolean(errors.password)}
               helperText={<ErrorMessage name="password" />}
               slotProps={{
                 input: {

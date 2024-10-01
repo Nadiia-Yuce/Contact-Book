@@ -49,7 +49,7 @@ export default function RegistrationForm() {
       onSubmit={handleSubmit}
       validationSchema={validationSchema}
     >
-      {({ isValid, dirty }) => (
+      {({ touched, errors, isValid, dirty }) => (
         <Form className="form animate__animated animate__fadeInDown">
           <div className={css.wrap}>
             <Field
@@ -59,6 +59,7 @@ export default function RegistrationForm() {
               label="Username"
               variant="outlined"
               sx={{ width: "250px" }}
+              error={touched.name && Boolean(errors.name)}
               helperText={<ErrorMessage name="name" />}
             />
           </div>
@@ -71,6 +72,7 @@ export default function RegistrationForm() {
               label="Email"
               variant="outlined"
               sx={{ width: "250px" }}
+              error={touched.email && Boolean(errors.email)}
               helperText={<ErrorMessage name="email" />}
             />
           </div>
@@ -83,6 +85,7 @@ export default function RegistrationForm() {
               label="Password"
               variant="outlined"
               sx={{ width: "250px", position: "relative" }}
+              error={touched.password && Boolean(errors.password)}
               helperText={<ErrorMessage name="password" />}
               slotProps={{
                 input: {
