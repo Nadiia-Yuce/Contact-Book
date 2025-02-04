@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://connections-api.goit.global/";
+axios.defaults.baseURL = import.meta.env.VITE_SERVER_URL;
 
 //Встановлення хедера аутентифікації з токеном, що прийде з бека
 const setAuthHeader = token => {
