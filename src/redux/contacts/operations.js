@@ -3,7 +3,7 @@ import axios from "axios";
 
 //TODO Як створити axios інстанс для зручної роботи з декількома беками
 // const axiosInstance = axios.create({
-//   baseURL: "https://connections-api.goit.global/",
+//   baseURL: "https://...",
 // });
 
 //Оголошенння операцій для роботи з бекендом
