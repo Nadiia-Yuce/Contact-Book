@@ -6,6 +6,7 @@ import {
   fetchContacts,
 } from "./operations";
 import { logOut } from "../auth/operations";
+import toast from "react-hot-toast";
 
 const initialState = {
   items: [],
@@ -53,6 +54,7 @@ const slice = createSlice({
       .addCase(addContact.fulfilled, (state, action) => {
         state.items.push(action.payload);
         state.loading = false;
+        toast.success("New contact added!");
       })
 
       //----------------------DELETE-------------------------------//
@@ -107,6 +109,7 @@ const slice = createSlice({
         (state, action) => {
           state.loading = false;
           state.error = action.error.message;
+          toast.error(action.error.message ?? "Something went wrong.");
         }
       );
   },

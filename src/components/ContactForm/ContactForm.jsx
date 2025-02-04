@@ -4,7 +4,6 @@ import { addContact } from "../../redux/contacts/operations";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import toast from "react-hot-toast";
 import css from "./ContactForm.module.css";
 
 export default function ContactForm() {
@@ -14,7 +13,6 @@ export default function ContactForm() {
 
   const handleSubmit = (values, actions) => {
     dispatch(addContact(values));
-    toast.success("New contact added!");
     actions.resetForm();
   };
 

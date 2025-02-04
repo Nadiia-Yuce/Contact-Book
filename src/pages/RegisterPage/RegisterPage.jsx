@@ -5,7 +5,7 @@ import css from "./RegisterPage.module.css";
 export default function RegisterPage() {
   return (
     <div className={css.registerPageContainer}>
-      <h1 className={css.pageTitle}>Create your accoun </h1>
+      <h1 className={css.pageTitle}>Create your account </h1>
       <RegistrationForm />
       <p className={css.login}>
         Already have an account?

@@ -44,7 +44,7 @@ export default function LoginForm() {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      {({ touched, errors, isValid, dirty }) => (
+      {({ touched, errors }) => (
         <Form className="form animate__animated animate__fadeInDown">
           <div className={css.wrap}>
             <Field
@@ -90,7 +90,7 @@ export default function LoginForm() {
           <Button
             variant="contained"
             type="submit"
-            disabled={!isValid || !dirty}
+            // disabled={!isValid || !dirty}
             sx={{ backgroundColor: "rgb(65, 116, 177)", width: "100px" }}
           >
             Log in

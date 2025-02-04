@@ -43,7 +43,11 @@ export const logIn = createAsyncThunk(
       setAuthHeader(data.token);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      if (error.status === 400) {
+        return thunkAPI.rejectWithValue("Incorrect email or password.");
+      }
+
+      return thunkAPI.rejectWithValue("Something went wrong.");
     }
   }
 );

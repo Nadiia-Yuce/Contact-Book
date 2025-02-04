@@ -1,5 +1,6 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { logIn, logOut, refreshUser, register } from "./operations";
+import toast from "react-hot-toast";
 
 const initialState = {
   user: {
@@ -58,6 +59,7 @@ const slice = createSlice({
           //Коли токен expired
           state.isLoggedIn = false;
           state.token = null;
+          toast.error(action.payload ?? "Something went wrong.");
         }
       );
   },
